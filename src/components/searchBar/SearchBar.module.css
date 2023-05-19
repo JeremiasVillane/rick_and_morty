@@ -1,0 +1,15 @@
+/* .divSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.inputSearch {
+  width: 666px;
+  height: 33px;
+}
+
+.buttonAdd:hover {
+  background-color: #00471b;
+}
+  

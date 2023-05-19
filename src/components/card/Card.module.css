@@ -1,0 +1,147 @@
+/*-------------CARD--------------*/
+
+.card {
+  width: 15rem;
+  height: 27rem;
+  background-color: aliceblue;
+  border-radius: 17px;  /* 1rem */
+  border: #212121 0.2rem solid;
+  transition: all 0.4s ease-in;
+  box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  margin: 2rem;
+  /* overflow: hidden; */
+}
+
+.card:hover {
+  transform: translateY(-1.5rem);
+  transform: scale(0.98);
+  border: crimson 0.2em solid;
+  border-radius: 36px 0 36px 0;  /* 2.5rem 0 2.5rem 0; */
+  box-shadow: 0px 0px 30px 1px crimson;
+}
+
+/*------------BUTTON-------------*/
+
+.cardButton {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
+  border: none;
+  background-color: crimson;
+  color: #fff;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card:hover .cardButton {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+}
+
+.cardButtonTransition {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 500ms;
+  background-color: rgba(225, 199, 199, 0.6);
+  border-radius: 9999px;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cardButton:hover .cardButtonTransition {
+  width: 12em;
+  height: 12em;
+}
+
+.cardButtonLabel {
+  position: relative;
+  top: -1px;
+}
+
+/* .cardButton:active {
+  transform: scale(0.97);
+} */
+
+/*-------------IMG--------------*/
+
+.cardImage {
+  width: 13rem;
+  padding:12px;
+  border-radius: 36px;
+  filter: drop-shadow(0rem .25rem .3rem black);
+  transition: all 0.4s ease-in;
+}
+
+.card:hover .cardImage {
+  transform: translateY(-1.5rem);
+  transform: scale(1.2);
+  filter: drop-shadow(0rem .25rem .3rem black) brightness(102%) saturate(111%);
+  /* border-radius: 22px 0 22px 22px; */
+  /* border-radius: 2.5rem 0 2.5rem 0; */
+  /* filter: brightness(102%) saturate(111%) drop-shadow(0 .1rem .3rem black); */
+}
+
+/*-------------DATA--------------*/
+
+.divData {
+  align-items: center; 
+  text-align: center;
+  cursor: default;
+  cursor: default;
+}
+
+.nameContainer {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.25s ease-in;
+}
+
+.nameContainer h1 {
+  width: 222px;
+  margin: 2px;
+  padding: 0.1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: purple;
+  /* white-space: nowrap; */
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  background-color: aliceblue;
+  border-radius: 0.2rem;
+  transition: all 0.33s ease-in;
+  filter: drop-shadow(0 0 .3rem black);
+}
+
+.card:hover .nameContainer h1 {
+  font-size: 1.11rem;
+  /* white-space: nowrap; */
+  filter: drop-shadow(0 0 .3rem black);
+}
+
+.card:hover .nameContainer {
+  margin-top: .3rem;
+  border-radius: 33px 0 25px 0;
+  filter: drop-shadow(0 .25rem .3rem black);
+}
+
+.divData h3 {
+  font-weight: 400;
+  line-height: 2rem;
+}
