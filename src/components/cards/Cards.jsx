@@ -5,7 +5,7 @@ export default function Cards({ characters, onClose }) {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
-    marginTop: '3rem'
+    marginTop: '3rem',
   }
   return (
     <div style={cardContainer}>

@@ -1,0 +1,10 @@
+.divNav {
+    display: flex;
+}
+
+.navBar {
+    background-image: linear-gradient(180deg, rgba(255, 0, 89, 0.12), rgb(165, 88, 5));
+    /* position: fixed; */
+    display: flex;
+    flex-direction: row;
+}

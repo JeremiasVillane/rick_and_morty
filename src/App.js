@@ -1,39 +1,48 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav';
 import About from './components/about/About';
 import Detail from './components/detail/Detail';
 import Form from './components/form/Form';
+import Favorites from './components/favorites/Favorites';
 
 export default function App() {
+   const location = useLocation();
    const navigate = useNavigate();
+   const [characters, setCharacters] = useState([]);
    const [access, setAccess] = useState(false);
    const EMAIL = 'ejemplo@gmail.com';
-   const PASSWORD = 'unaPassword';
+   const PASSWORD = '1Password';
    
-   function login(userData) {
-      if (userData.password === PASSWORD && userData.email === EMAIL) {
-         setAccess(true);
-         navigate('/home');
-      }
+   const login = (userData) => {
+      setAccess(true);
+      navigate('/home');
+      // if (userData.password === PASSWORD && userData.email === EMAIL) {
+      //    setAccess(true);
+      //    navigate('/home');
+      // } else {
+      //    alert(`Wrong email or password!`)
+      // }
    }
 
    useEffect(() => {
       !access && navigate('/');
    }, [access]);
       
-   const [characters, setCharacters] = useState([]);
 
    const onSearch = (id) => {
+      const characterId = characters.filter(character => character.id === Number(id));
+      if(characterId.length) return alert('The character already exists!');
+      if(id < 1 || id > 826) return alert('There is no character with that id!');
       axios(`https://rickandmortyapi.com/api/character/${id}`)
       .then(({ data }) => {
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
          } else {
-            window.alert('¡No hay personajes con este ID!');
+            window.alert('There is no character with that id!');
          }
       });
    }
@@ -42,11 +51,10 @@ export default function App() {
       setCharacters(characters.filter(character => character.id !== Number(id)))
    }
 
-   const location = useLocation();
 
    return (
       <div className='App'>
-         {location.pathname !== '/' && <Nav onSearch={onSearch} />}
+         {location.pathname !== '/' && <Nav onSearch={onSearch} setAccess={setAccess} />}
          <Routes>
             <Route exact path='/' element={<Form login={login} />} />
             <Route 
@@ -54,6 +62,7 @@ export default function App() {
                element={<Cards characters={characters} 
                onClose={onClose} />}
             />
+            <Route path='/favorites' element={<Favorites characters={characters} />} />
             <Route path='/about' element={<About />} />
             <Route path='/detail/:id' element={<Detail />} />
          </Routes>
