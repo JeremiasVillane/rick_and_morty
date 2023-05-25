@@ -13,7 +13,7 @@ function Card({ id, name, species, gender, image, onClose, addFav, removeFav, my
       removeFav(id)
     } else {
       setIsFav(true)
-      addFav({ id, name, species, gender, image })
+      addFav({ id, name, species, gender, image })    //* sin destructuring sería props.addFav(props)
     }
   }
   
@@ -34,19 +34,24 @@ function Card({ id, name, species, gender, image, onClose, addFav, removeFav, my
       </div>
 
       <div className={styles.divData}>
+        <h5>id: {id}</h5>
         <h3>{species}</h3>
         <h3>{gender}</h3>
-        {/* <h3>{status}</h3> */}
-        {/* <h3>{origin}</h3> */}
       </div>
       {
         useLocation().pathname === '/home' &&
-        <button className={styles.cardButton} onClick={() => onClose(id)}>
+        <button className={`${styles.cardButton} ${styles.cardButtonX}`} onClick={() => onClose(id)}>
           <span className={styles.cardButtonTransition}></span>
           <span className={styles.cardButtonLabel}>X</span>
         </button>
       }
-      <button onClick={handleFavorite}>{isFav ? '❤️' : '🤍'}</button>
+      <button className={useLocation().pathname === '/home' 
+          ? (`${styles.cardButton} ${styles.cardButtonfav}`)
+          : (`${styles.cardButton} ${styles.cardButtonfavOnly}`)} 
+          onClick={handleFavorite}>
+        <span className={styles.cardButtonTransition}></span>
+        <span className={styles.cardButtonLabel}>{isFav ? '❤️' : '🤍'}</span>
+        </button>
     </div>
    );
 }

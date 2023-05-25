@@ -10,17 +10,19 @@ export default function Form(props) {
     });
     
     const [errors, setErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = event => {
         const { name, value } = event.target;
         setUserData({
           ...userData,
-          [name]: value  // ES6: propiedades dinámicas
+          [name]: value       //* ES6: propiedades dinámicas
         });
         setErrors(validation({
           ...userData,
           [name]: value
         }))
+        //* Versión anterior:
         // const updatedErrors = validation(name, value);
         // setErrors({
         //   ...errors,
@@ -36,16 +38,51 @@ export default function Form(props) {
     return(
       <div className={styles.divLoginForm}>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
-            {/* <label htmlFor='email'>EMAIL</label> */}
-            <input className={styles.loginInput} name='email' value={userData.email} type='text' onChange={handleChange} placeholder='EMAIL' />
+            <div style={{ position: 'relative', marginTop: '1.5em' }}>
+              <input 
+                className={styles.loginInput} 
+                name='email' 
+                value={userData.email} 
+                type='text' 
+                onChange={handleChange}
+                placeholder='EMAIL' />
             <br/>
-            {errors.email && <p>{errors.email}</p>}
             <br/>
-            {/* <label htmlFor='password'>PASSWORD</label> */}
-            <input className={styles.loginInput} name='password' value={userData.password} type='password' onChange={handleChange} placeholder='PASSWORD' />
-            <br/>
-            {errors.password && <p>{errors.password}</p>}
-            <br/>
+              <input
+                className={styles.loginInput}
+                name='password'
+                value={userData.password}
+                type={showPassword ? 'text' : 'password'}
+                onChange={handleChange}
+                placeholder='PASSWORD'
+              />
+              <span 
+                style={showPassword ? {color: '#ff5900'} : {color: '#855b2f'} } 
+                className={styles.passwordIcon} 
+                onClick={() => setShowPassword(!showPassword)}>
+                  &#128065;     {/* 👁 */}
+              </span>
+              </div>
+
+              <div>
+              {errors.email && (
+                <span className= {errors.email 
+                  ? (`${styles.error} ${styles.errorPopUp}`)
+                  : (`${styles.error}`)
+                }>
+                {errors.email}
+                </span>              
+              )}
+            {errors.password && (
+                <span className= {errors.password 
+                  ? (`${styles.error} ${styles.errorPopUp}`)
+                  : (`${styles.error}`)
+                }>
+                {errors.password}
+                </span>              
+              )}
+              </div>
+    
             <button className={styles.loginButton} type='submit'>
               <span className={styles.loginButtonTransition}></span>
               <span className={styles.loginButtonLabel}>Submit</span>
