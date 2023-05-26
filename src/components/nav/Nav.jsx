@@ -6,7 +6,7 @@ export default function Nav({ onSearch, setAccess }) {
     const handleLogOut = () => {
         setAccess(false);
     }
-
+//! Agregar un botón para borrar todas las cards
     return (
         <div className={styles.divNav}>
             <nav className={styles.navBar}>

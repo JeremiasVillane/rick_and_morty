@@ -15,30 +15,31 @@ const reducer = (state = initialState, { type, payload }) => {
             };
 
         case REMOVE_FAV:
-            const favsFiltered = fav => fav.id !== Number(payload)
+            const filteredFavs = fav => fav.id !== Number(payload)
             return {
                 ...state,
-                myFavorites: state.myFavorites.filter(favsFiltered),
-                allCharacters: state.allCharacters.filter(favsFiltered)
+                myFavorites: state.myFavorites.filter(filteredFavs),
+                allCharacters: state.allCharacters.filter(filteredFavs)
             };
         case FILTER:
-            const charsFiltered = state.allCharacters.filter(char => char.gender === payload) 
+            const filteredCharacters = 
+                payload === 'allCharacters' 
+                ? [...state.allCharacters] 
+                : state.allCharacters.filter(char => char.gender === payload);
             return {
-                ...state,
-                myFavorites: 
-                    payload === 'allCharacters' 
-                    ? [...state.allCharacters]
-                    : charsFiltered
-            }
+              ...state,
+              myFavorites: filteredCharacters
+            };
         case ORDER:
-            const allCharactersCopy = [...state.allCharacters]
+            const allCharactersCopy = [...state.myFavorites];
+            const sortedCharacters = 
+                payload === 'A' 
+                ? allCharactersCopy.sort((a, b) => a.id - b.id) 
+                : allCharactersCopy.sort((a, b) => b.id - a.id);
             return {
-                ...state,
-                myFavorites:
-                    payload === 'A'
-                    ? allCharactersCopy.sort((a, b) => a.id - b.id)
-                    : allCharactersCopy.sort((a, b) => b.id - a.id)
-            }
+              ...state,
+              myFavorites: sortedCharacters
+            };
         default:
             return {...state};
     }

@@ -13,11 +13,11 @@ export default function SearchBar({ onSearch }) {
    const handleSearch = (event) => {
       event.preventDefault();
       onSearch(id);
-      setId('');
-      inputRef.current.focus();
+      setId('');                       //* Luego de buscar un personaje el campo de búsqueda se borra...
+      inputRef.current.focus();        //* ...y el cursor se mantiene en el campo de búsqueda
    };
 
-   const handleKeypress = event => {
+   const handleKeypress = event => {   //* Busca al presionar la tecla Enter
       if (event.key === 'Enter') {
         handleSearch(event);
       }

@@ -1,11 +1,15 @@
 /*#------------FORM-------------*/
 
 .divLoginForm {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.divLoginForm img {
+  width: 33em;
+  margin: 1.5em;
 }
 
 .loginForm {
@@ -98,7 +102,6 @@
 /*#------------BUTTON-------------*/
 
 .loginButton {
-    transform: translate(-50%, 125%);
     width: 60%;
     border-radius: 1rem;
     border: none;
@@ -107,16 +110,16 @@
     font-size: 1rem;
     padding: .5rem 1rem;
     position: absolute;
-    left: 50%;
-    bottom: 0;
+    /* left: 50%; */
+    bottom: 5%;
     opacity: 0;
-    transition: 0.3s ease-out;
+    transition: 0.5s ease-out;
     overflow: hidden;
     cursor: pointer;
   }
   
   .loginForm:hover .loginButton {
-    transform: translate(-50%, 50%);
+    transform: translate(0, 3%);
     opacity: 1;
   }
   

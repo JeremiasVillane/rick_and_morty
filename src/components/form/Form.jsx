@@ -1,6 +1,7 @@
 import styles from './Form.module.css';
 import { useState } from 'react';
 import validation from './validation';
+import logo from '../../assets/logo.png';
 
 
 export default function Form(props) {
@@ -16,7 +17,7 @@ export default function Form(props) {
         const { name, value } = event.target;
         setUserData({
           ...userData,
-          [name]: value       //* ES6: propiedades dinámicas
+          [name]: value
         });
         setErrors(validation({
           ...userData,
@@ -37,6 +38,7 @@ export default function Form(props) {
 
     return(
       <div className={styles.divLoginForm}>
+        <img src={logo} alt='Rick and Morty' />
         <form className={styles.loginForm} onSubmit={handleSubmit}>
             <div style={{ position: 'relative', marginTop: '1.5em' }}>
               <input 
@@ -60,7 +62,7 @@ export default function Form(props) {
                 style={showPassword ? {color: '#ff5900'} : {color: '#855b2f'} } 
                 className={styles.passwordIcon} 
                 onClick={() => setShowPassword(!showPassword)}>
-                  &#128065;     {/* 👁 */}
+                  &#128065;     {/* 👁 //! Cambiar por imagen */}
               </span>
               </div>
 

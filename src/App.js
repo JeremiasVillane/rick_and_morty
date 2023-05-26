@@ -35,6 +35,7 @@ export default function App() {
 
    const onSearch = (id) => {
       const characterId = characters.filter(character => character.id === Number(id));
+      //! Cambiar alerts por modals (¿usando un portal?)
       if(characterId.length) return alert('The character already exists!');
       if(id < 1 || id > 826) return alert('There is no character with that id!');
       axios(`https://rickandmortyapi.com/api/character/${id}`)
