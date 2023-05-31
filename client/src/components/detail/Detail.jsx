@@ -2,34 +2,18 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-// const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
-// const API_KEY = '921c53ed19ee.c07a3c34e20b05d4765f';
-
-// useEffect(() => {
-//     axios(`${URL_BASE}/${id}?key=${API_KEY}`)
-//     .then(response => response.data)
-//     .then((data) => {
-//        if (data.name) {
-//           setCharacter(data);
-//        } else {
-//           window.alert('No hay personajes con ese ID');
-//        }
-//     });
-//     return setCharacter({});
-// }, [id]);
-
 export default function Detail(props) {
   const { id } = useParams();
   const [character, setCharacter] = useState({});
     
   
   useEffect(() => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`)
+    axios(`http://localhost:3001/rickandmorty/character/${id}`)    // https://rickandmortyapi.com/api/character/${id}
     .then(({ data }) => {
       if (data.name) {
         setCharacter(data);
       } else {
-        window.alert('No hay personajes con ese ID');
+        window.alert('There is no character with that id!');
       }
     });
     return setCharacter({});
