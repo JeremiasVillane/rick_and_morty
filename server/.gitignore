@@ -3,6 +3,9 @@
 # temp
 /tmp
 
+# env
+.env
+
 # dependencies
 /node_modules
 /.pnp
