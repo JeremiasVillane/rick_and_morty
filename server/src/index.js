@@ -19,7 +19,16 @@ server.use(express.json());
 
 server.use("/rickandmorty", router);
 
-server.listen(PORT, async () => {
-  await conn.sync({ force: true });
-  console.log(`Server raised in port: ${PORT}`);
-});
+conn
+  .sync({ force: true })
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server raised in port: ${PORT}`);
+    });
+  })
+  .catch((error) => console.error(error.message));
+
+// server.listen(PORT, async () => {
+//   await conn.sync({ force: true });
+//   console.log(`Server raised in port: ${PORT}`);
+// });
